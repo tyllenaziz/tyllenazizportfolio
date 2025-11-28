@@ -85,7 +85,9 @@ const Contact = () => {
             {/* Form Settings */}
             <input type="hidden" name="_captcha" value="false" />
             <input type="hidden" name="_subject" value="New Portfolio Message!" />
-            <input type="hidden" name="_next" value="http://localhost:5173/" />
+            
+            {/* UPDATED: Redirect to your live Vercel site, NOT localhost */}
+            <input type="hidden" name="_next" value="https://tyllenazizportfolio.vercel.app/" />
 
             <div className="space-y-6">
               <div>
