@@ -56,7 +56,7 @@ const Hero = () => {
             {/* Item 1: Developer */}
             <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10 backdrop-blur-sm">
               <Monitor className="text-accent w-6 h-6" />
-              <span>Software Developer</span>
+              <span>Software Engineer</span>
             </div>
 
             <span className="hidden md:block text-gray-500">|</span>
