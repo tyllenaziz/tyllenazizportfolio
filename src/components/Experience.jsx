@@ -30,7 +30,7 @@ const Experience = () => {
       role: "Bachelor of Science in Information Technology",
       company: "Mount Kenya University",
       period: "2022 - 2025",
-      desc: "Graduated with Second Class Lower Division. Gained expertise in Software Development, Network Security, and Database Management. Built multiple real-world systems as part of practical coursework."
+      desc: "Graduated with Second Class Honours. Gained expertise in Software Development, Network Security, and Database Management. Built multiple real-world systems as part of practical coursework."
     }
   ];
 
