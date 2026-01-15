@@ -16,7 +16,7 @@ const Projects = () => {
       title: "Rental Management App",
       desc: "Mobile system for landlords to manage tenants and billing. Features automated reminders, bill updates, and tenant profiling.",
       tech: ["React Native", "Flask", "Node.js"],
-      link: "https://expo.dev/artifacts/eas/viLc1eUoWiQqBAmMd9YNGW.apk",
+      link: "https://expo.dev/artifacts/eas/2PvaU9Xeud27KNGQnZhzGj.apk",
       image: "/rent.jpg", 
       isApk: true
     },
@@ -25,7 +25,7 @@ const Projects = () => {
       desc: "AI-powered mobile app that detects pests using computer vision. Built with PyTorch and OpenCV with a React Native frontend.",
       tech: ["Python", "PyTorch", "React Native"],
       // Your Expo Build Link
-      link: "https://expo.dev/accounts/tyllen001/projects/kinga-pest-control/builds/2ccfaa3a-8250-45dc-be1d-8898d4634232",
+      link: "https://expo.dev/artifacts/eas/wgAmTgdYb4go9LaxGj99EC.apk",
       // Make sure to add a pest.jpg to public folder, or it uses this backup
       image: "/pest.jpg", 
       isApk: true
