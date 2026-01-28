@@ -65,7 +65,7 @@ const Contact = () => {
                 
                 {/* LinkedIn */}
                 <a 
-                  href="https://www.linkedin.com/in/aziz-tyllen-129b63331" 
+                  href="https://www.linkedin.com/in/tyllen-aziz-639b00264/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-300 hover:bg-accent hover:text-primary transition-all duration-300"
