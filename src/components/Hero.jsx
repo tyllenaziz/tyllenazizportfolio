@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Monitor, Smartphone, Globe, Code2 } from 'lucide-react';
+import { Monitor, Smartphone, Globe, Brain, Database, BarChart3, Code2 } from 'lucide-react';
 
 const Hero = () => {
   return (
@@ -51,26 +51,42 @@ const Hero = () => {
           </h1>
           
           {/* --- NEW TECH SUBTITLE SECTION --- */}
-          <div className="mt-8 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-6 text-xl text-gray-300 font-medium drop-shadow-md">
-            
-            {/* Item 1: Developer */}
-            <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10 backdrop-blur-sm">
-              <Monitor className="text-accent w-6 h-6" />
-              <span>Software Developer</span>
-            </div>
+<div className="mt-8 flex flex-wrap items-center justify-center gap-3 md:gap-4 max-w-6xl mx-auto text-base md:text-lg text-gray-300 font-medium drop-shadow-md">
+  
+  {/* Item 1: Software Developer */}
+  <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10 backdrop-blur-sm">
+    <Code2 className="text-blue-400 w-5 h-5" />
+    <span>Software Developer</span>
+  </div>
 
-            <span className="hidden md:block text-gray-500">|</span>
+  {/* Item 2: Full-Stack & Mobile */}
+  <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10 backdrop-blur-sm">
+    <div className="flex">
+      <Smartphone className="text-purple-500 w-5 h-5" />
+      <Globe className="text-green-400 w-5 h-5 -ml-1.5" />
+    </div>
+    <span>Full-Stack & Mobile App Developer</span>
+  </div>
 
-            {/* Item 2: Mobile & Web */}
-            <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10 backdrop-blur-sm">
-              <div className="flex">
-                <Smartphone className="text-purple-500 w-6 h-6" />
-                <Globe className="text-green-400 w-6 h-6 -ml-2" />
-              </div>
-              <span>Mobile & Web Applications</span>
-            </div>
+  {/* Item 3: AI Solutions */}
+  <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10 backdrop-blur-sm">
+    <Brain className="text-pink-400 w-5 h-5" />
+    <span>AI-Powered Solutions</span>
+  </div>
 
-          </div>
+  {/* Item 4: Database Specialist */}
+  <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10 backdrop-blur-sm">
+    <Database className="text-yellow-500 w-5 h-5" />
+    <span>Database Specialist</span>
+  </div>
+
+  {/* Item 5: Data Analyst */}
+  <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10 backdrop-blur-sm">
+    <BarChart3 className="text-cyan-400 w-5 h-5" />
+    <span>Data Analyst (Power BI)</span>
+  </div>
+
+</div>
           
           {/* Buttons */}
           <div className="mt-10 flex justify-center gap-4">
