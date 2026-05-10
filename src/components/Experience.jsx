@@ -31,6 +31,13 @@ const Experience = () => {
       company: "Mount Kenya University",
       period: "2022 - 2025",
       desc: "Graduated with Second Class Honours. Gained expertise in Software Development, Network Security, and Database Management. Built multiple real-world systems as part of practical coursework."
+    },
+    {
+      type: "WORK",
+      role: "Data Curator",
+      company: "Veeva systems",
+      period: "2026 - Present",
+      desc: "Currently works as a data curator with veeva systems where I manage, analyse and o web researh for proper data vailiadtion, In the same role i also update dats upto date for the experts "
     }
   ];
 
