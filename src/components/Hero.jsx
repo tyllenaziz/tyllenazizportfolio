@@ -80,6 +80,20 @@ const Hero = () => {
     <span>Database Specialist</span>
   </div>
 
+  {/* Item 4: Systems Support Engineer */}
+  <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10 backdrop-blur-sm">
+    <Database className="text-yellow-500 w-5 h-5" />
+    <span>Systems Support Engineer</span>
+  </div>
+
+  {/* Item 4: Co founder nexvijo
+solutions */}
+  <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10 backdrop-blur-sm">
+    <Database className="text-yellow-500 w-5 h-5" />
+    <span>Co founder nexvijo
+solutions</span>
+  </div>
+
   {/* Item 5: Data Analyst */}
   <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10 backdrop-blur-sm">
     <BarChart3 className="text-cyan-400 w-5 h-5" />

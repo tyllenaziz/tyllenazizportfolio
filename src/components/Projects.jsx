@@ -20,6 +20,16 @@ const Projects = () => {
       image: "/rent.jpg", 
       isApk: true
     },
+
+    {
+      title: "Hospital Appointment and booking system",
+      desc: "Currently developing an hospital appointment app that allows patients and doctors to book online assesments, monitor appointment status and also receive appointment confirmations",
+      tech: ["React Native", "Flask", "Node.js"],
+      link: "https://github.com/tyllenaziz/Hospital-Appointment-App.git",
+      image: "/hos.png", 
+  
+    },
+    
     {
       title: "Kinga Pest Control (Mobile)",
       desc: "AI-powered mobile app that detects pests using computer vision. Built with PyTorch and OpenCV with a React Native frontend.",
@@ -40,6 +50,7 @@ const Projects = () => {
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",
       isApk: false
     },
+    
     {
       title: "GradePoa System",
       desc: "Student grading automation system with secure login and report generation. Hosted on Render (Backend) and Vercel (Frontend).",
