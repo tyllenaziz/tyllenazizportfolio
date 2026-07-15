@@ -27,7 +27,7 @@ const Projects = () => {
       tech: ["React Native", "Flask", "Node.js"],
       link: "https://github.com/tyllenaziz/Hospital-Appointment-App.git",
       image: "/hos.png", 
-  
+      isApk: false
     },
     
     {
