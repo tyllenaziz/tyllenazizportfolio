@@ -36,14 +36,72 @@ const About = () => {
 
             <h2 className="text-3xl font-bold text-white mb-6">About Me</h2>
             <p className="text-gray-400 text-lg leading-relaxed mb-6">
-              I am a motivated and detail-oriented IT graduate with strong skills in software development, mobile applications, and system automation. 
+<h3 className="text-xl font-bold text-accent mb-4">
+  🏆 Guinness World Record Holder
+</h3>
+
+<p className="text-gray-400 text-lg leading-relaxed mb-6">
+I am proud to be a <span className="text-white font-semibold">Guinness World Record Holder</span> through the KANZ AI program, contributing to the record for the <span className="text-white">Most Users in an Artificial Intelligence Video Lesson.</span> This achievement reflects my passion for continuous learning, innovation, and artificial intelligence.
+
+<br /><br />
+
+I am an Information Technology graduate with over two years of professional experience in software development, systems support, data analysis, and enterprise data management. Since April 2024, I have worked at Nextvijo Software Solutions designing, deploying, and maintaining business information systems while providing technical support and database administration. I also work remotely as a Data Curator and Data Analyst at Veeva Systems, where I perform data validation, quality assurance, research, and analysis on enterprise healthcare datasets. Combined with industrial training at Nairobi City Water & Sewerage Company, I have developed strong expertise in IT support, troubleshooting, database management, cloud technologies, and delivering reliable technology solutions.
+</p>
               <br/><br/>
-              Highly experienced in building real-world systems including POS systems, rental management apps, and AI-powered solutions. 
-              Passionate about developing reliable, user-friendly systems and ready to contribute effectively in a professional IT environment.
+I am an Information Technology graduate with over two years of professional experience in software development, systems support, data analysis, and enterprise data management. Since April 2024, I have worked at Nextvijo Software Solutions designing, deploying, and maintaining business information systems while providing technical support and database administration. I also work remotely as a Data Curator and Data Analyst at Veeva Systems, where I perform data validation, quality assurance, research, and analysis on enterprise healthcare datasets. Combined with industrial training at Nairobi City Water & Sewerage Company, I have developed strong expertise in IT support, troubleshooting, database management, cloud technologies, and delivering reliable technology solutions.
             </p>
             <div className="grid grid-cols-2 gap-4">
               <div className="p-4 bg-primary rounded-lg border border-white/5 hover:border-accent/50 transition-colors">
                 <Code className="text-accent mb-2" />
+                {/* Certificates */}
+<div className="mt-8">
+  <h3 className="text-2xl font-bold text-white mb-6">
+    Achievements & Certifications
+  </h3>
+
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+    <div className="bg-primary rounded-xl p-4 border border-white/10 hover:border-accent transition-all">
+      <img
+        src="/world.jpg"
+        alt="Guinness World Record Certificate"
+        className="rounded-lg w-full h-64 object-cover"
+      />
+      <h4 className="text-lg font-semibold text-white mt-4">
+        Guinness World Record Holder
+      </h4>
+      <p className="text-gray-400 text-sm mt-2">
+        Official Guinness World Record certificate awarded through the KANZ AI program for participating in the record-breaking AI lesson.
+      </p>
+    </div>
+
+    <div className="bg-primary rounded-xl p-4 border border-white/10 hover:border-accent transition-all">
+      <img
+        src="/kanz.jpg"
+        alt="KANZ AI Certificate"
+        className="rounded-lg w-full h-64 object-cover"
+      />
+      <h4 className="text-lg font-semibold text-white mt-4">
+        KANZ AI Certificate
+      </h4>
+      <p className="text-gray-400 text-sm mt-2">
+        Successfully completed the KANZ AI program, strengthening my expertise in Artificial Intelligence, software development and modern AI tools.
+      </p>
+    </div>
+
+  </div>
+</div>
+<div className="mt-8">
+  <a
+    href="https://try.ka.nz/ai/tyllenaziz"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center px-6 py-3 bg-accent text-black font-semibold rounded-lg hover:scale-105 transition-all"
+  >
+    🚀 View My KANZ AI Portfolio
+  </a>
+</div>
                 <h3 className="font-semibold text-white">Full Stack Dev</h3>
               </div>
               <div className="p-4 bg-primary rounded-lg border border-white/5 hover:border-purple-500/50 transition-colors">
