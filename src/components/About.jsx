@@ -60,37 +60,41 @@ I am an Information Technology graduate with over two years of professional expe
   </h3>
 
 
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div className="space-y-10">
 
-    <div className="bg-primary rounded-xl p-4 border border-white/10 hover:border-accent transition-all">
-      <img
-        src="/world.jpg"
-        alt="Guinness World Record Certificate"
-        className="rounded-lg w-full h-64 object-cover"
-      />
-      <h4 className="text-lg font-semibold text-white mt-4">
-        Guinness World Record Holder
-      </h4>
-      <p className="text-gray-400 text-sm mt-2">
-        Official Guinness World Record certificate awarded through the KANZ AI program for participating in the record-breaking AI lesson.
-      </p>
-    </div>
+  <div className="bg-primary rounded-xl p-6 border border-white/10">
+    <img
+      src="/world.jpg"
+      alt="Guinness World Record"
+      className="w-full max-w-4xl mx-auto rounded-lg object-contain"
+    />
 
-    <div className="bg-primary rounded-xl p-4 border border-white/10 hover:border-accent transition-all">
-      <img
-        src="/kanz.jpg"
-        alt="KANZ AI Certificate"
-        className="rounded-lg w-full h-64 object-cover"
-      />
-      <h4 className="text-lg font-semibold text-white mt-4">
-        KANZ AI Certificate
-      </h4>
-      <p className="text-gray-400 text-sm mt-2">
-        Successfully completed the KANZ AI program, strengthening my expertise in Artificial Intelligence, software development and modern AI tools.
-      </p>
-    </div>
+    <h4 className="text-2xl font-bold text-white mt-6">
+      🏆 Guinness World Record Holder
+    </h4>
 
+    <p className="text-gray-400 mt-3">
+      Official Guinness World Record certificate awarded through KANZ AI.
+    </p>
   </div>
+
+  <div className="bg-primary rounded-xl p-6 border border-white/10">
+    <img
+      src="/kanz.jpg"
+      alt="KANZ AI Certificate"
+      className="w-full max-w-4xl mx-auto rounded-lg object-contain"
+    />
+
+    <h4 className="text-2xl font-bold text-white mt-6">
+      🤖 KANZ AI Certificate
+    </h4>
+
+    <p className="text-gray-400 mt-3">
+      Successfully completed the KANZ AI program.
+    </p>
+  </div>
+
+</div>
 </div>
 <div className="mt-8">
   <a
