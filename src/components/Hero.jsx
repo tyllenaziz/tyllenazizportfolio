@@ -41,7 +41,7 @@ const Hero = () => {
           <div className="flex items-center justify-center gap-2 mb-2">
             <Code2 className="text-accent w-5 h-5" />
             <h2 className="text-accent font-semibold tracking-wide uppercase text-lg shadow-black drop-shadow-md">
-              Welcome to my world
+              Welcome to my world I am a Guinness World Record Participant 
             </h2>
           </div>
           
