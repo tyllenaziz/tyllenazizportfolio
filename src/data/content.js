@@ -130,31 +130,57 @@ export const dataSkills = ['Data Analysis', 'Data Validation & QA', 'Data Curati
 export const experience = [
   {
     kind: 'work',
-    role: 'Remote Data Curator & Data Analyst',
-    org: 'Veeva Systems',
-    period: '2026 – Present',
-    points: ['Validate, research and update enterprise healthcare datasets so records stay accurate.', 'Quality assurance and web-based research to verify data before it is published.'],
+    role: 'IT Officer & Data Analyst',
+    org: 'Lake Basin Development Authority',
+    period: 'MONTH 2026 – Present',
+    points: [
+      'Provide IT support and keep the authority’s systems and equipment running.',
+      'Analyse and report on data to support decision-making.',
+    ],
   },
   {
     kind: 'work',
     role: 'Co-Founder · Full-Stack Developer · Systems Support Engineer',
     org: 'Nextvijo Software Solutions',
     period: 'Apr 2024 – Present',
-    points: ['Design, deploy and maintain business information systems for clients.', 'Technical support and database administration.', 'Co-developed GradePoa and built the Kinga, POS and rental systems.'],
+    points: [
+      'Design, deploy and maintain business information systems for multiple clients.',
+      'Manage MySQL and MongoDB databases, including backup, restoration and optimisation.',
+      'Build REST APIs and backend services, with user roles and access control.',
+      'Provide technical support, user training and documentation after deployment.',
+    ],
   },
   {
     kind: 'work',
-    role: 'Industrial Training — IT Support',
+    role: 'Data Curator & Data Analyst (6-month contract)',
+    org: 'Veeva Systems · Remote',
+    period: 'Dec 2025 – Jun 2026',
+    points: [
+      'Curated, validated and quality-checked large healthcare and life sciences datasets.',
+      'Cleaned, transformed and enriched data, and found trends, anomalies and gaps.',
+      'Worked with global teams to meet quality targets and data governance standards.',
+    ],
+  },
+  {
+    kind: 'work',
+    role: 'IT Assistant',
     org: 'Nairobi City Water & Sewerage Company',
-    period: 'Internship',
-    points: ['IT support, troubleshooting and database management in a large utility.'],
+    period: 'Apr 2025 – Dec 2025',
+    points: [
+      'Installed and configured hardware, software and peripherals.',
+      'Troubleshot hardware, software and network issues, and supported routine maintenance.',
+      'Assisted with network monitoring, basic server administration and user account management.',
+    ],
   },
   {
     kind: 'edu',
     role: 'BSc Information Technology',
     org: 'Mount Kenya University',
     period: '2022 – 2025',
-    points: ['Second Class Honours.', 'Software development, network security and database management, with real systems built as coursework.'],
+    points: [
+      'Second Class Honours.',
+      'Software development, database systems, networks, information security and AI, with real systems built as coursework.',
+    ],
   },
 ];
 
