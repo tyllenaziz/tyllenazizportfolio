@@ -1,85 +1,81 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Menu, X, Download } from 'lucide-react';
+import { LINKS } from '../data/content';
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const links = [
+  { name: 'About', id: 'about' },
+  { name: 'Skills', id: 'skills' },
+  { name: 'Experience', id: 'experience' },
+  { name: 'Projects', id: 'projects' },
+  { name: 'Contact', id: 'contact' },
+];
 
-  const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Experience', href: '#experience' }, // Added Experience link
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' },
-  ];
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState('');
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
+      { rootMargin: '-45% 0px -50% 0px' }
+    );
+    links.forEach((l) => {
+      const el = document.getElementById(l.id);
+      if (el) obs.observe(el);
+    });
+    return () => obs.disconnect();
+  }, []);
 
   return (
-    <nav className="fixed w-full z-50 bg-primary/80 backdrop-blur-md border-b border-white/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex-shrink-0 font-bold text-2xl text-accent cursor-pointer">
-            Tyllen<span className="text-white">.</span>
-          </div>
-          
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-8">
-            <div className="flex items-baseline space-x-8">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 text-gray-300"
-                >
-                  {link.name}
-                </a>
-              ))}
-            </div>
-            {/* RESUME BUTTON */}
-            <a 
-              href="/resume.pdf" 
-              download
-              className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-accent hover:text-primary border border-white/20 rounded-full transition-all text-sm font-bold text-white"
-            >
-              Resume <Download size={16} />
-            </a>
-          </div>
+    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled || open ? 'border-b border-white/10 bg-ink-900/80 backdrop-blur-xl' : 'bg-transparent'}`}>
+      <nav className="container-x flex h-16 items-center justify-between" aria-label="Main navigation">
+        <a href="#top" className="flex items-center gap-2 font-display text-lg font-semibold text-ivory" aria-label="Tyllen Aziz — home">
+          <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-gold-300 to-gold-500 font-bold text-ink-950">T</span>
+          <span className="hidden sm:inline">Tyllen Aziz</span>
+        </a>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-300 hover:text-white focus:outline-none"
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-secondary border-b border-white/10">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-accent hover:bg-white/5"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.name}
+        <ul className="hidden items-center gap-1 md:flex">
+          {links.map((l) => (
+            <li key={l.id}>
+              <a href={`#${l.id}`} aria-current={active === l.id ? 'true' : undefined}
+                className={`rounded-full px-4 py-2 text-sm font-medium transition ${active === l.id ? 'bg-white/10 text-gold-300' : 'text-ivory/70 hover:text-ivory'}`}>
+                {l.name}
               </a>
+            </li>
+          ))}
+        </ul>
+
+        <div className="flex items-center gap-3">
+          <a href={LINKS.cv} target="_blank" rel="noopener noreferrer" className="btn-primary hidden !px-5 !py-2.5 md:inline-flex">
+            <Download size={16} aria-hidden="true" /> CV
+          </a>
+          <button className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 text-ivory md:hidden" onClick={() => setOpen(!open)}
+            aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? 'Close menu' : 'Open menu'}>
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
+      </nav>
+
+      {open && (
+        <div id="mobile-menu" className="border-t border-white/10 px-5 pb-6 pt-3 md:hidden">
+          <ul className="flex flex-col gap-1">
+            {links.map((l) => (
+              <li key={l.id}>
+                <a href={`#${l.id}`} onClick={() => setOpen(false)} className="block rounded-xl px-4 py-3 text-ivory/80 hover:bg-white/5">{l.name}</a>
+              </li>
             ))}
-            <a 
-              href="/resume.pdf"
-              download
-              className="block px-3 py-2 text-accent font-bold mt-4"
-            >
-              Download Resume
-            </a>
-          </div>
+          </ul>
+          <a href={LINKS.cv} target="_blank" rel="noopener noreferrer" className="btn-primary mt-4 w-full"><Download size={16} aria-hidden="true" /> Download CV</a>
         </div>
       )}
-    </nav>
+    </header>
   );
-};
-
-export default Navbar;
+}

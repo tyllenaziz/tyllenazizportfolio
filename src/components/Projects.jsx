@@ -1,148 +1,84 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Github, ExternalLink, Download, Monitor } from 'lucide-react';
+import { useMemo, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Github, ExternalLink, Download, Check } from 'lucide-react';
+import Reveal, { SectionHeading } from './Reveal';
+import { projects, categories } from '../data/content';
 
-const Projects = () => {
-  const projects = [
-    {
-      title: "Sangara Wholesalers POS",
-      desc: "A complete inventory and sales management system. Implemented product tracking, stock updates, automated reporting, and secure user roles.",
-      tech: ["React", "Node.js", "Express", "My SQL"],
-      link: "https://sangarawholesalers.vercel.app/#/dashboard",
-      image: "/pos1.jpg", 
-      isApk: false
-    },
-    {
-      title: "Rental Management App",
-      desc: "Mobile system for landlords to manage tenants and billing. Features automated reminders, bill updates, and tenant profiling.",
-      tech: ["React Native", "Flask", "Node.js"],
-      link: "https://expo.dev/artifacts/eas/2PvaU9Xeud27KNGQnZhzGj.apk",
-      image: "/rent.jpg", 
-      isApk: true
-    },
+function Actions({ p }) {
+  const primaryLive = p.live;
+  const Icon = primaryLive?.type === 'install' ? Download : ExternalLink;
+  return (
+    <div className="mt-6 flex flex-wrap gap-3">
+      {primaryLive ? (
+        <a href={primaryLive.href} target="_blank" rel="noopener noreferrer" className="btn-primary !px-5 !py-2.5">
+          <Icon size={15} aria-hidden="true" /> {primaryLive.label}<span className="sr-only"> for {p.title} (opens in new tab)</span>
+        </a>
+      ) : (
+        <a href={p.github} target="_blank" rel="noopener noreferrer" className="btn-primary !px-5 !py-2.5">
+          <Github size={15} aria-hidden="true" /> View Source<span className="sr-only"> for {p.title} on GitHub (opens in new tab)</span>
+        </a>
+      )}
+      {primaryLive && p.github && (
+        <a href={p.github} target="_blank" rel="noopener noreferrer" className="btn-ghost !px-5 !py-2.5">
+          <Github size={15} aria-hidden="true" /> GitHub<span className="sr-only"> repository for {p.title} (opens in new tab)</span>
+        </a>
+      )}
+    </div>
+  );
+}
 
-    {
-      title: "Hospital Appointment and booking system",
-      desc: "Currently developing an hospital appointment app that allows patients and doctors to book online assesments, monitor appointment status and also receive appointment confirmations",
-      tech: ["React Native", "Flask", "Node.js"],
-      link: "https://github.com/tyllenaziz/Hospital-Appointment-App.git",
-      image: "/hos.png", 
-      isApk: false
-    },
-    
-    {
-      title: "Kinga Pest Control (Mobile)",
-      desc: "AI-powered mobile app that detects pests using computer vision. Built with PyTorch and OpenCV with a React Native frontend.",
-      tech: ["Python", "PyTorch", "React Native"],
-      // Your Expo Build Link
-      link: "https://expo.dev/artifacts/eas/wgAmTgdYb4go9LaxGj99EC.apk",
-      // Make sure to add a pest.jpg to public folder, or it uses this backup
-      image: "/pest.jpg", 
-      isApk: true
-    },
-    {
-      title: "Kinga Web Dashboard",
-      desc: "The web interface for the Kinga Pest Control system. Allows administrators to view data, manage users, and access reports.",
-      tech: ["React", "Vercel", "Tailwind"],
-      // Your Vercel Link
-      link: "https://kinga-web.vercel.app/",
-      // Using a different backup image for the web version so it looks distinct
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop",
-      isApk: false
-    },
-    
-    {
-      title: "GradePoa System",
-      desc: "Student grading automation system with secure login and report generation. Hosted on Render (Backend) and Vercel (Frontend).",
-      tech: ["React", "Render", "Vercel"],
-      link: "#",
-      image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1000&auto=format&fit=crop",
-      isApk: false
-    }
-  ];
+function Card({ p, large }) {
+  return (
+    <motion.article layout initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.96 }} transition={{ duration: 0.4 }}
+      className={`group glass flex overflow-hidden rounded-3xl transition duration-300 hover:-translate-y-1 hover:border-gold-400/50 hover:shadow-2xl hover:shadow-gold-500/10 ${large ? 'flex-col lg:col-span-2 lg:flex-row' : 'flex-col'}`}>
+      <div className={`relative overflow-hidden ${large ? 'lg:w-[46%]' : ''}`}>
+        <img src={p.image} alt={`${p.title} project illustration`} width="960" height="600" loading="lazy"
+          className="aspect-[16/10] h-full w-full object-cover transition duration-700 group-hover:scale-110" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink-900/60 to-transparent" aria-hidden="true" />
+        {p.featured && <span className="absolute left-4 top-4 rounded-full bg-gold-400 px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-ink-950">Featured</span>}
+      </div>
+      <div className="flex flex-1 flex-col p-6 md:p-8">
+        <p className="font-mono text-xs uppercase tracking-widest text-mint-300">{p.kind}</p>
+        <h3 className="mt-2 font-display text-2xl text-ivory transition group-hover:text-gold-300">{p.title}</h3>
+        <p className="mt-3 leading-relaxed text-ivory/65">{p.desc}</p>
+        <ul className={`mt-5 space-y-2 text-sm text-ivory/75 ${large ? '' : 'hidden sm:block'}`}>
+          {p.features.slice(0, large ? 4 : 3).map((f) => (
+            <li key={f} className="flex gap-2"><Check size={15} className="mt-0.5 shrink-0 text-gold-400" aria-hidden="true" />{f}</li>
+          ))}
+        </ul>
+        <ul className="mt-5 flex flex-wrap gap-2" aria-label="Technologies">{p.tech.map((t) => <li key={t} className="chip">{t}</li>)}</ul>
+        <div className="mt-auto"><Actions p={p} /></div>
+      </div>
+    </motion.article>
+  );
+}
+
+export default function Projects() {
+  const [cat, setCat] = useState('All');
+  const list = useMemo(() => projects.filter((p) => cat === 'All' || p.categories.includes(cat)), [cat]);
 
   return (
-    <section id="projects" className="py-20 bg-primary">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-white">Featured Projects</h2>
-          <p className="mt-4 text-gray-400">Real-world systems deployed and in use</p>
+    <section id="projects" className="section bg-ink-800/40">
+      <div className="container-x">
+        <SectionHeading eyebrow="Projects" title="Real systems, real users" sub="Web platforms, mobile apps and AI work. Each button goes to the live app, the installable build or the source code." />
+
+        <Reveal className="mb-10 flex flex-wrap gap-2" >
+          <div role="group" aria-label="Filter projects by category" className="flex flex-wrap gap-2">
+            {categories.map((c) => (
+              <button key={c} onClick={() => setCat(c)} aria-pressed={cat === c}
+                className={`rounded-full border px-5 py-2 text-sm font-semibold transition ${cat === c ? 'border-gold-400 bg-gold-400 text-ink-950' : 'border-white/15 bg-white/5 text-ivory/80 hover:border-gold-400/50'}`}>
+                {c}
+              </button>
+            ))}
+          </div>
+        </Reveal>
+
+        <motion.div layout className="grid gap-6 lg:grid-cols-2">
+          <AnimatePresence mode="popLayout">
+            {list.map((p) => <Card key={p.id} p={p} large={p.featured && cat === 'All'} />)}
+          </AnimatePresence>
         </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="group relative bg-secondary rounded-xl overflow-hidden border border-white/5 hover:border-accent/50 transition-all duration-300 flex flex-col"
-            >
-              {/* Image Container */}
-              <div className="h-48 overflow-hidden relative">
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all z-10" />
-                <img 
-                  src={project.image} 
-                  onError={(e) => {
-                    // Fallback if local image is missing
-                    e.target.src = "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop"
-                  }}
-                  alt={project.title} 
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-                />
-              </div>
-
-              {/* Content */}
-              <div className="p-6 flex flex-col flex-grow justify-between">
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-accent transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-400 mb-4 line-clamp-3">
-                    {project.desc}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tech.map((t) => (
-                      <span key={t} className="text-xs font-medium px-2 py-1 bg-primary rounded text-accent border border-accent/20">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Buttons Section */}
-                <div className="flex gap-4">
-                  {/* MAIN BUTTON (Live Demo or Download) */}
-                  {project.link !== "#" ? (
-                    <a 
-                      href={project.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="flex items-center gap-2 text-sm font-bold text-primary bg-accent px-4 py-2 rounded-full hover:bg-white transition-all shadow-lg shadow-accent/20"
-                    >
-                      {project.isApk ? <Download size={16} /> : <ExternalLink size={16} />} 
-                      {project.isApk ? "Download App" : "Live Demo"}
-                    </a>
-                  ) : (
-                    // Button disabled if no link
-                    <span className="flex items-center gap-2 text-sm font-bold text-gray-500 bg-white/5 px-4 py-2 rounded-full cursor-not-allowed">
-                      <Monitor size={16} /> Coming Soon
-                    </span>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </section>
   );
-};
-
-export default Projects;
+}

@@ -1,22 +1,25 @@
-import React from 'react';
+import { MotionConfig } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import Skills from './components/Skills';
+import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
-import Experience from './components/Experience'; // <--- Add this at top
 
-function App() {
+export default function App() {
   return (
-    <div className="bg-primary min-h-screen">
+    <MotionConfig reducedMotion="user">
+      <a href="#about" className="sr-only z-[60] rounded-full bg-gold-400 px-4 py-2 font-bold text-ink-950 focus:not-sr-only focus:fixed focus:left-4 focus:top-4">Skip to content</a>
       <Navbar />
-      <Hero />
-      <About />
-      <Experience />  
-      <Projects />
-      <Contact />
-    </div>
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <Experience />
+        <Projects />
+        <Contact />
+      </main>
+    </MotionConfig>
   );
 }
-
-export default App;

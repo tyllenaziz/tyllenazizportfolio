@@ -2,25 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-}
-
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
 body {
-  background-color: #0f172a;
-  color: #e2e8f0;
-  font-family: 'Inter', sans-serif;
+  background: #0b0d12;
+  color: #e7e2d8;
+  font-family: 'Manrope', system-ui, sans-serif;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
+::selection { background: #f2bf4b; color: #0b0d12; }
+:focus-visible { outline: 2px solid #f2bf4b; outline-offset: 3px; border-radius: 6px; }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #0b0d12; }
+::-webkit-scrollbar-thumb { background: #2a303c; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #f2bf4b; }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
+@layer components {
+  .section { @apply relative py-24 md:py-32; }
+  .container-x { @apply mx-auto w-full max-w-7xl px-5 sm:px-8; }
+  .eyebrow { @apply font-mono text-xs uppercase tracking-[0.25em] text-gold-400; }
+  .h-display { @apply font-display font-semibold tracking-tight text-ivory; }
+  .glass { @apply border border-white/10 bg-white/[0.04] backdrop-blur-md; }
+  .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-gold-400 to-gold-500 px-7 py-3.5 text-sm font-bold text-ink-950 shadow-lg shadow-gold-500/20 transition hover:-translate-y-0.5 hover:shadow-gold-500/40; }
+  .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-7 py-3.5 text-sm font-semibold text-ivory transition hover:-translate-y-0.5 hover:border-gold-400/60 hover:bg-white/10; }
+  .chip { @apply rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-[11px] text-ivory/80; }
 }
-::-webkit-scrollbar-track {
-  background: #1e293b;
+.noise::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
 }
-::-webkit-scrollbar-thumb {
-  background: #38bdf8;
-  border-radius: 5px;
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }

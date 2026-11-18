@@ -1,120 +1,86 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Monitor, Smartphone, Globe, Brain, Database, BarChart3, Code2 } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowRight, Download, Github, Linkedin, Trophy, MapPin } from 'lucide-react';
+import { LINKS, roles, projects } from '../data/content';
 
-const Hero = () => {
+export default function Hero() {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setI((n) => (n + 1) % roles.length), 2600);
+    return () => clearInterval(t);
+  }, []);
+
+  const stats = [
+    { n: '2+', l: 'Years professional experience' },
+    { n: `${projects.length}`, l: 'Projects shipped or in build' },
+    { n: '1', l: 'Guinness World Record' },
+  ];
+
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden bg-primary">
-      
-      {/* --- 1. BACKGROUND IMAGE (Watermark Look) --- */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src="/ty.jpg" 
-          alt="Background" 
-          className="w-full h-full object-cover opacity-20 grayscale" 
-        />
+    <section id="top" className="noise relative flex min-h-screen items-center overflow-hidden pb-16 pt-28">
+      {/* animated background */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div className="absolute -left-32 top-10 h-[28rem] w-[28rem] animate-drift rounded-full bg-gold-500/20 blur-[120px]" />
+        <div className="absolute -right-24 bottom-0 h-[30rem] w-[30rem] animate-drift rounded-full bg-mint-500/20 blur-[130px]" style={{ animationDelay: '-8s' }} />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.04)_1px,transparent_1px)] bg-[size:56px_56px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
       </div>
 
-      {/* --- 2. COLOR CHANGING OVERLAY --- */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-r from-blue-900/40 via-purple-900/40 to-slate-900/40 animate-gradient-xy mix-blend-overlay"></div>
-      
-      <style>{`
-        @keyframes gradient-xy {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-        .animate-gradient-xy {
-          background-size: 200% 200%;
-          animation: gradient-xy 6s ease infinite;
-        }
-      `}</style>
+      <div className="container-x relative grid items-center gap-14 lg:grid-cols-[1.15fr_.85fr]">
+        <div>
+          <motion.span initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm text-gold-300">
+            <Trophy size={15} aria-hidden="true" /> Guinness World Record Holder
+          </motion.span>
 
-      {/* --- 3. THE CONTENT --- */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          {/* Top Title */}
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <Code2 className="text-accent w-5 h-5" />
-            <h2 className="text-accent font-semibold tracking-wide uppercase text-lg shadow-black drop-shadow-md">
-              Welcome to my world I am a Guinness World Record Participant 
-            </h2>
+          <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.7 }}
+            className="h-display mt-6 text-5xl leading-[1.05] sm:text-6xl xl:text-7xl">
+            Tyllen Aziz <span className="bg-gradient-to-r from-gold-300 via-gold-400 to-mint-300 bg-clip-text text-transparent">Alugo</span>
+          </motion.h1>
+
+          <div className="mt-5 h-9 text-xl font-semibold text-ivory/90 sm:text-2xl" aria-live="polite">
+            <AnimatePresence mode="wait">
+              <motion.span key={roles[i]} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.35 }} className="inline-block">
+                {roles[i]}
+              </motion.span>
+            </AnimatePresence>
           </div>
-          
-          {/* Main Name */}
-          <h1 className="mt-2 text-5xl md:text-7xl font-bold text-white tracking-tight drop-shadow-lg">
-            Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-purple-500">Tyllen Aziz</span>
-          </h1>
-          
-          {/* --- NEW TECH SUBTITLE SECTION --- */}
-<div className="mt-8 flex flex-wrap items-center justify-center gap-3 md:gap-4 max-w-6xl mx-auto text-base md:text-lg text-gray-300 font-medium drop-shadow-md">
-  
-  {/* Item 1: Software Developer */}
-  <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10 backdrop-blur-sm">
-    <Code2 className="text-blue-400 w-5 h-5" />
-    <span>Software Developer</span>
-  </div>
 
-  {/* Item 2: Full-Stack & Mobile */}
-  <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10 backdrop-blur-sm">
-    <div className="flex">
-      <Smartphone className="text-purple-500 w-5 h-5" />
-      <Globe className="text-green-400 w-5 h-5 -ml-1.5" />
-    </div>
-    <span>Full-Stack & Mobile App Developer</span>
-  </div>
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="mt-6 max-w-xl text-lg leading-relaxed text-ivory/65">
+            I build web and mobile software and turn messy data into something people can trust. Co-founder of Nextvijo Software Solutions, working across full-stack development, data analysis and applied AI, with a focus on practical tools for communities that are often overlooked.
+          </motion.p>
 
-  {/* Item 3: AI Solutions */}
-  <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10 backdrop-blur-sm">
-    <Brain className="text-pink-400 w-5 h-5" />
-    <span>AI-Powered Solutions</span>
-  </div>
+          <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="mt-9 flex flex-wrap items-center gap-3">
+            <a href="#projects" className="btn-primary">View My Projects <ArrowRight size={16} aria-hidden="true" /></a>
+            <a href={LINKS.cv} target="_blank" rel="noopener noreferrer" className="btn-ghost"><Download size={16} aria-hidden="true" /> Download CV</a>
+            <a href={LINKS.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" className="grid h-12 w-12 place-items-center rounded-full border border-white/15 bg-white/5 text-ivory transition hover:border-gold-400/60 hover:text-gold-300"><Github size={20} /></a>
+            <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" className="grid h-12 w-12 place-items-center rounded-full border border-white/15 bg-white/5 text-ivory transition hover:border-gold-400/60 hover:text-gold-300"><Linkedin size={20} /></a>
+          </motion.div>
 
-  {/* Item 4: Database Specialist */}
-  <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10 backdrop-blur-sm">
-    <Database className="text-yellow-500 w-5 h-5" />
-    <span>Database Specialist</span>
-  </div>
+          <dl className="mt-12 grid max-w-xl grid-cols-3 gap-4 border-t border-white/10 pt-8">
+            {stats.map((s) => (
+              <div key={s.l}>
+                <dt className="sr-only">{s.l}</dt>
+                <dd className="h-display text-3xl text-gold-300 sm:text-4xl">{s.n}</dd>
+                <p className="mt-1 text-xs leading-snug text-ivory/50" aria-hidden="true">{s.l}</p>
+              </div>
+            ))}
+          </dl>
+        </div>
 
-  {/* Item 4: Systems Support Engineer */}
-  <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10 backdrop-blur-sm">
-    <Database className="text-yellow-500 w-5 h-5" />
-    <span>Systems Support Engineer</span>
-  </div>
-
-  {/* Item 4: Co founder nexvijo
-solutions */}
-  <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10 backdrop-blur-sm">
-    <Database className="text-yellow-500 w-5 h-5" />
-    <span>Co founder nexvijo
-solutions</span>
-  </div>
-
-  {/* Item 5: Data Analyst */}
-  <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10 backdrop-blur-sm">
-    <BarChart3 className="text-cyan-400 w-5 h-5" />
-    <span>Data Analyst (Power BI)</span>
-  </div>
-
-</div>
-          
-          {/* Buttons */}
-          <div className="mt-10 flex justify-center gap-4">
-            <a href="#projects" className="px-8 py-3 rounded-full bg-accent text-primary font-bold hover:bg-accent/90 transition-transform hover:scale-105 shadow-lg shadow-accent/20">
-              View Work
-            </a>
-            <a href="#contact" className="px-8 py-3 rounded-full border border-white/20 bg-black/20 backdrop-blur-sm hover:bg-white/10 transition-all text-white">
-              Contact Me
-            </a>
+        <motion.div initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="relative mx-auto w-full max-w-sm lg:max-w-md">
+          <div className="absolute -inset-4 rounded-[2.5rem] bg-gradient-to-br from-gold-400/40 via-transparent to-mint-400/40 blur-2xl" aria-hidden="true" />
+          <div className="relative overflow-hidden rounded-t-[12rem] rounded-b-[2rem] border border-white/15 bg-ink-800 p-2">
+            <img src="/profile.webp" alt="Portrait of Tyllen Aziz Alugo" width="800" height="1067" fetchpriority="high"
+              className="aspect-[4/5] w-full rounded-t-[11.5rem] rounded-b-[1.5rem] object-cover object-top" />
+          </div>
+          <div className="glass absolute -left-4 bottom-10 animate-float rounded-2xl px-4 py-3 shadow-xl sm:-left-10">
+            <p className="font-mono text-[10px] uppercase tracking-widest text-gold-400">Co-founder</p>
+            <p className="text-sm font-semibold text-ivory">Nextvijo Software Solutions</p>
+          </div>
+          <div className="glass absolute -right-2 top-16 animate-float rounded-2xl px-4 py-3 shadow-xl sm:-right-8" style={{ animationDelay: '-3s' }}>
+            <p className="flex items-center gap-1.5 text-sm font-semibold text-ivory"><MapPin size={14} className="text-mint-300" aria-hidden="true" /> Nairobi, Kenya</p>
           </div>
         </motion.div>
       </div>
     </section>
   );
-};
-
-export default Hero;
+}
